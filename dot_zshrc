@@ -1,0 +1,7 @@
+export PATH="$HOME/.local/bin:$PATH"
+
+# doomemacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+# mise
+eval "$(mise activate zsh)"
