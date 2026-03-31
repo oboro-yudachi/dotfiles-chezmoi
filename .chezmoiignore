@@ -1,0 +1,10 @@
+# ただし ~/.claude/ 本体は将来管理できるよう除外対象から外す
+!dot_claude
+!dot_claude/**
+
+# Claude Code のプロジェクト設定（どのディレクトリ配下でも除外）
+**/dot_claude
+**/dot_claude/**
+# Collaborator ツール（どのディレクトリ配下でも除外）
+**/dot_collaborator
+**/dot_collaborator/**
