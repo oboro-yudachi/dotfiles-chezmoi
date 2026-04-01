@@ -1,0 +1,5 @@
+[tools]
+chezmoi = "latest"
+{{ if eq .chezmoi.hostname "donuts-taguchisho" -}}
+ruby = "3.3.9"
+{{ end -}}

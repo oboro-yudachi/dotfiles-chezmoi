@@ -32,12 +32,13 @@ xcode-select install
 
 # emacs-mac
 brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-modules
+brew install emacs-mac --with-modules --with-native-compilation
+# --with-native-compilation を省略すると doom doctor で native compilation 未対応の警告が出る
 ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
 
-# Doom Emacs 本体
-git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-~/.emacs.d/bin/doom install
+# Doom Emacs 本体（公式: https://github.com/doomemacs/doomemacs#install）
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
 ```
 
 chezmoi で `~/.doom.d/` の設定が展開済みなので、`doom install` 後そのまま使える。
