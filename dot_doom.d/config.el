@@ -12,5 +12,5 @@
   (setq lsp-disabled-clients (append lsp-disabled-clients '(ruby-ls rubocop-ls))))
 
 (setq doom-theme 'doom-one)
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 (setq org-directory "~/org/")
