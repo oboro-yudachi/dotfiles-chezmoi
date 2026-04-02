@@ -5,3 +5,30 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # mise
 eval "$(mise activate zsh)"
+
+{{- if .work }}
+. '/Users/taguchi.sho/Documents/google-cloud-sdk/path.zsh.inc'
+. '/Users/taguchi.sho/Documents/google-cloud-sdk/completion.zsh.inc'
+
+# AWS NGT Tools
+export PATH="$HOME/.aws-ngt-tools/bin:$PATH"
+
+# AWS ngt認証の自動設定
+eval "$(aws-ngt-auth status --export 2>/dev/null || true)"
+aws-ngt-login() { aws-ngt-auth login "$1" && export AWS_DEFAULT_PROFILE=ngt; }
+aws-ngt-logout() { aws-ngt-auth logout && unset AWS_DEFAULT_PROFILE; }
+
+# homebrewでインストールしたMySQLのバージョンが複数ある場合、それらを切り替えるのは、以下のコマンドで行う
+# brew unlink mysql... && brew link mysql...
+if [ -d "opt/homebrew/opt/mysql/bin" ]; then
+  export PATH="/opt/homebrew/opt/mysql/bin:$PATH"
+fi
+
+if [ -d "opt/homebrew/opt/mysql@8.4/bin" ]; then
+  export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+fi
+
+if [ -d "opt/homebrew/opt/mysql-client@8.4/bin" ]; then
+  export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
+fi
+{{ end -}}

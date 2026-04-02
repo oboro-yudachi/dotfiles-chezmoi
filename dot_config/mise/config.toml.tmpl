@@ -1,6 +1,10 @@
+[settings]
+idiomatic_version_file_enable_tools = ["node", "ruby"]
+
 [tools]
-chezmoi = "latest"
-{{ if .work -}}
+chezmoi = "2.70.0"
+
+{{- if .work }}
 ruby = "3.3.9"
 node = "24.14.1"
 npm = "11.12.1"
