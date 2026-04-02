@@ -19,6 +19,12 @@
   (setenv "PATH" (concat mise-shims ":" (getenv "PATH")))
   (add-to-list 'exec-path mise-shims))
 
+(which-function-mode 1)
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+(setq-default tab-width 2)
+
 ;; bundle exec経由でruby-lspを起動しない（GemfileにはrubyLSPは含まれていないため）
 ;; solargraphを無効化してruby-lspを使う（lsp-modeのデフォルトはsolargraph=ruby-ls）
 (after! lsp-mode
@@ -37,10 +43,6 @@
    (typescript-ts-mode . lsp)))
 
 (use-package lsp-ui)
-
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(setq-default tab-width 2)
 
 ;; treemacsの設定
 (after! treemacs
