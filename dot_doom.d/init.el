@@ -1,19 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; This file controls what Doom modules are enabled and what order they load
-;; in. Remember to run 'doom sync' after modifying it!
-
-;; NOTE: Press 'SPC h d h' (or 'C-h d h' for non-vim users) to access Doom's
-;;   documentation. There you'll find a link to Doom's Module Index where all of
-;;   our modules are listed, including what flags they support.
-
-;; NOTE: Move your cursor over a module's name (or its flags) and press 'K' (or
-;;   'C-c c k' for non-vim users) to view its documentation. This works on flags
-;;   as well (those symbols that start with a plus).
-;;
-;;   Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
-;;   directory (for easy access to its source code).
-
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
@@ -100,7 +86,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
        ;;llm               ; when I said you needed friends, I didn't mean...
-       (lsp)              ; M-x vscode
+       (lsp +peek)              ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -143,10 +129,10 @@
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
-       ;;json              ; At least it ain't XML
+       json              ; At least it ain't XML
        ;;janet             ; Fun fact: Janet is me!
        ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
-       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp +tree-sitter)  ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -159,7 +145,7 @@
        ;;ocaml             ; an objective camel
        ;;odin              ; C, minus its footguns
        org               ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
+       (php +lsp)        ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;graphviz          ; diagrams for confusing yourself even more
        ;;purescript        ; javascript, but functional
@@ -179,7 +165,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
-       ;;yaml              ; JSON, but readable
+       yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email
