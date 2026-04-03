@@ -25,22 +25,18 @@
 
 (setq-default tab-width 2)
 
-;; bundle exec経由でruby-lspを起動しない（GemfileにはrubyLSPは含まれていないため）
-;; solargraphを無効化してruby-lspを使う（lsp-modeのデフォルトはsolargraph=ruby-ls）
 (after! lsp-mode
+  ;; bundle exec経由でruby-lspを起動しない（GemfileにはrubyLSPは含まれていないため）
   (setq lsp-ruby-lsp-use-bundler nil)
-  (setq lsp-disabled-clients (append lsp-disabled-clients '(ruby-ls rubocop-ls))))
-
-(use-package lsp-mode
-  :config
+  ;; solargraphを無効化してruby-lspを使う（lsp-modeのデフォルトはsolargraph=ruby-ls）
+  (setq lsp-disabled-clients (append lsp-disabled-clients '(ruby-ls rubocop-ls)))
   (setq lsp-inlay-hint-enable t)
-  (setq lsp-disabled-clients '(rubocop-ls))
   (setq lsp-javascript-format-enable nil)
-  (setq lsp-typescript-format-enable nil)
-  :hook
-  ((ruby-mode . lsp)
-   (tsx-ts-mode . lsp)
-   (typescript-ts-mode . lsp)))
+  (setq lsp-typescript-format-enable nil))
+
+(add-hook 'ruby-mode-hook #'lsp)
+(add-hook 'tsx-ts-mode-hook #'lsp)
+(add-hook 'typescript-ts-mode-hook #'lsp)
 
 (use-package lsp-ui)
 
@@ -72,10 +68,6 @@
 (map! :leader
       :desc "Toggle LSP headerline breadcrumb"
       "l b" #'lsp-headerline-breadcrumb-mode)
-
-(map! :leader
-      :desc "Vertico project search"
-      "/" #'+vertico/project-search)
 
 (map! :leader
       :desc "treemacs select window"
