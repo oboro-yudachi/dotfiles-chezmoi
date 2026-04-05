@@ -74,5 +74,9 @@
       "l w" #'treemacs-select-window)
 
 (map! :leader
+      :desc "Toggle Scroll Bar"
+      "l s" #'scroll-bar-mode)
+
+(map! :leader
       :desc "Vertico project search"
       "/" #'+vertico/project-search)

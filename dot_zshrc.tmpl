@@ -3,6 +3,29 @@ export PATH="$HOME/.local/bin:$PATH"
 # doomemacs
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
+EMACS_MAC_BIN="/opt/homebrew/opt/emacs-mac/bin/emacs"
+EMACS_PLUS_BIN="/opt/homebrew/opt/emacs-plus@30/bin/emacs"
+EMACS_MAC_APP="/opt/homebrew/opt/emacs-mac/Emacs.app"
+EMACS_PLUS_APP="/opt/homebrew/opt/emacs-plus@30/Emacs.app"
+
+function use-emacs-mac() {
+  export EMACS="$EMACS_MAC_BIN"
+  rm /Applications/Emacs.app
+  ln -s "$EMACS_MAC_APP" /Applications/Emacs.app
+  echo "Switched to emacs-mac: $($EMACS --version | head -1)"
+  echo "Running doom sync..."
+  doom sync
+}
+
+function use-emacs-plus() {
+  export EMACS="$EMACS_PLUS_BIN"
+  rm /Applications/Emacs.app
+  ln -s "$EMACS_PLUS_APP" /Applications/Emacs.app
+  echo "Switched to emacs-plus: $($EMACS --version | head -1)"
+  echo "Running doom sync..."
+  doom sync
+}
+
 # mise
 eval "$(mise activate zsh)"
 
