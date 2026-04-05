@@ -4,6 +4,7 @@
     "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "enabledPlugins": {
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "discord@claude-plugins-official": true
   }
 }
