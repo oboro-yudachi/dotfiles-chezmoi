@@ -14,6 +14,10 @@
 ;; minibuffer（コマンド入力）終了時も寄せたい場合
 (add-hook 'minibuffer-exit-hook #'my/im-select-abc)
 
+;; 下のgitのブランチ窓を広くする
+(after! doom-modeline
+  (setq doom-modeline-vcs-max-length 60))
+
 ;; miseのshimsをPATHに追加（GUIアプリ起動時にシェルのPATHが引き継がれないため）
 (let ((mise-shims (expand-file-name "~/.local/share/mise/shims")))
   (setenv "PATH" (concat mise-shims ":" (getenv "PATH")))
