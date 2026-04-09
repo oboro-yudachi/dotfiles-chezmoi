@@ -6,5 +6,18 @@
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true,
     "discord@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": false
+  },
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(git push --force *)",
+      "Bash(chmod 777 *)"
+    ]
   }
 }
