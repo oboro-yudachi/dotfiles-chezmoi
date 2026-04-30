@@ -36,7 +36,8 @@
   (setq lsp-disabled-clients (append lsp-disabled-clients '(ruby-ls rubocop-ls)))
   (setq lsp-inlay-hint-enable t)
   (setq lsp-javascript-format-enable nil)
-  (setq lsp-typescript-format-enable nil))
+  (setq lsp-typescript-format-enable nil)
+  (add-hook 'lsp-mode-hook #'lsp-lens-mode))
 
 (add-hook 'ruby-mode-hook #'lsp)
 (add-hook 'tsx-ts-mode-hook #'lsp)
@@ -44,6 +45,21 @@
 
 (use-package lsp-ui)
 
+;; evilの設定
+(use-package! evil-matchit
+  :hook (after-init . global-evil-matchit-mode)
+  :config
+  ;; ruby-ts-modeを追加（ruby-modeはevilmi-init-pluginsが自動登録する）
+  (evilmi-load-plugin-rules '(ruby-ts-mode) '(simple ruby))
+  ;; ジャンプ後にキーワード上にカーソルを置く（デフォルトは行頭/行末になる）
+  (advice-add 'evilmi-jump-items :after
+              (lambda (&rest _)
+                (when (memq major-mode '(ruby-mode ruby-ts-mode))
+                  (let ((kw-re "\\_<\\(do\\|end\\|if\\|elsif\\|else\\|unless\\|while\\|until\\|for\\|def\\|class\\|module\\|begin\\|case\\|when\\|rescue\\|ensure\\)\\_>"))
+                    (back-to-indentation)
+                    (unless (looking-at kw-re)
+                      (when (re-search-forward kw-re (line-end-position) t)
+                        (goto-char (match-beginning 0)))))))))
 ;; treemacsの設定
 (after! treemacs
   ;; 幅を固定ロックしない（手で調整可能にする）
