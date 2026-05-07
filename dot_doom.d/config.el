@@ -81,6 +81,10 @@
         (start-process "open-in-cursor" nil "open" "-a" "Cursor" filename)
       (message "No file associated with this buffer."))))
 
+(use-package! claude-code-ide
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+
 (map! :leader
       :desc "Open in Cursor"
       "o C" #'open-in-cursor)
@@ -100,3 +104,7 @@
 (map! :leader
       :desc "Vertico project search"
       "/" #'+vertico/project-search)
+
+(map! :leader
+      :desc "Claude Code IDE Menu"
+      "c m" #'claude-code-ide-menu)
